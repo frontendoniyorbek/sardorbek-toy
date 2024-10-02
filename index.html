@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>Sardorbek va Ravshanoylarning to'yida faxriy mehmon bo'ling!</title>
+	</head>
+	<body>
+		<div class="invitation">
+			<header>
+				<h1>Assalomu alaykum</h1>
+				<p>Hurmatli aziz mehmonimiz!</p>
+				<p>
+					Sizni aziz farzandimiz
+					<span style="color: red; font-weight: bold">Sardorbek</span>ning "NIKOH" to'yi munosabati bilan qalblar ezguliklarga
+					to‘la bo‘lgan ushbu qutlug‘ kunda do‘stlar yonida bo‘lishga lutfan taklif qilamiz!
+				</p>
+			</header>
+			<section class="details">
+				<p><strong>Bazim:</strong> 📆 21.10.2024 / 🕰 14:00</p>
+				<p><strong>Manzil:</strong> Andijon viloyati, Baliqchi tumani, Nihol tantanalar saroyi</p>
+				<a href="https://maps.app.goo.gl/1LfoJJTp36BDTamK6" target="_blank" class="map-button">📍Lokatsiya</a>
+			</section>
+			<p></p>
+			<audio id="audioPlayer" loop>
+				<source src="audio.mp3" type="audio/mpeg" />
+				Your browser does not support the audio element.
+			</audio>
+
+			<button id="playPauseBtn" onclick="togglePlayPause()">Musiqa ▶️</button>
+		</div>
+
+		<script>
+			// Countdown Timer
+			const countdownDate = new Date('November 17, 2024 13:00:00').getTime();
+
+			const updateCountdown = () => {
+				const now = new Date().getTime();
+				const distance = countdownDate - now;
+
+				// Time calculations for days, hours, minutes, and seconds
+				const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+				const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+				const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+				const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+				// Format the output as DD:HH:MM:SS
+				document.getElementById('countdown').innerHTML =
+					(days < 10 ? '0' + days : days) +
+					':' +
+					(hours < 10 ? '0' + hours : hours) +
+					':' +
+					(minutes < 10 ? '0' + minutes : minutes) +
+					':' +
+					(seconds < 10 ? '0' + seconds : seconds);
+
+				// If the countdown is finished, display some text
+				if (distance < 0) {
+					clearInterval(x);
+					document.getElementById('countdown').innerHTML = "To'y keldi!";
+				}
+			};
+
+			// Update the countdown every 1 second
+			const x = setInterval(updateCountdown, 1000);
+
+			// Play/Pause music function
+			function togglePlayPause() {
+				const audioPlayer = document.getElementById('audioPlayer');
+				const playPauseBtn = document.getElementById('playPauseBtn');
+
+				if (audioPlayer.paused) {
+					audioPlayer.play();
+					playPauseBtn.textContent = '⏸️ Pause Music';
+				} else {
+					audioPlayer.pause();
+					playPauseBtn.textContent = '▶️ Play Music';
+				}
+			}
+		</script>
+	</body>
+</html>
